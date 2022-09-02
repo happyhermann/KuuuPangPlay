@@ -15,7 +15,7 @@ export interface IGetMoviesResult {
     minimun: string;
   };
   page: number;
-  result: IMovie[];
+  results: IMovie[];
   total_pages: number;
   total_result: number;
 }
