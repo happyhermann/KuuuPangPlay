@@ -4,9 +4,14 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { theme } from "./theme";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { RecoilRoot } from "recoil";
+
+const client = new QueryClient();
 
 export const GlobalStyle = createGlobalStyle`
 
+ 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -33,7 +38,11 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	font-weight: 300;
+  	line-height: 1.2;
+	color: ${(props) => props.theme.white.darker};
+	background-color: black
+	
 }
 ol, ul {
 	list-style: none;
@@ -60,11 +69,16 @@ a {
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <App />
-  </ThemeProvider>
+  <RecoilRoot>
+    <QueryClientProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </QueryClientProvider>
+  </RecoilRoot>
 );
 
 // If you want to start measuring performance in your app, pass a function

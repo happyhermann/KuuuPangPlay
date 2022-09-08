@@ -7,6 +7,9 @@ interface IMovie {
   poster_path: string;
   title: string;
   overview: string;
+  vote_average: string;
+  vote_count: string;
+  release_date: string;
 }
 
 export interface IGetMoviesResult {
@@ -21,7 +24,7 @@ export interface IGetMoviesResult {
 }
 
 export function getMovies() {
-  return fetch(`${BASE_PATH}/movie/now_playing?api_key=${API_KEY}`).then(
-    (response) => response.json()
-  );
+  return fetch(
+    `${BASE_PATH}/movie/now_playing?language=ko-Kr&region=KR&api_key=${API_KEY}`
+  ).then((response) => response.json());
 }
